@@ -6,7 +6,7 @@
 
 html,
 body {
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
 }
@@ -87,7 +87,7 @@ main .intro {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 40px 20px;
+  padding: 64px 20px;
   animation: fadeIn 1s ease-in;
 }
 
