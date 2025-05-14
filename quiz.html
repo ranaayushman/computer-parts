@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz - Learn Computer Parts</title>
+    <link rel="stylesheet" href="../styles/style.css" />
+    <script defer src="../scripts/script.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <h1>Learn Computer Parts</h1>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="input-devices.html">Input Devices</a></li>
+            <li><a href="output-devices.html">Output Devices</a></li>
+            <li><a href="storage-devices.html">Storage Devices</a></li>
+            <li><a href="cpu.html">CPU</a></li>
+            <li><a href="quiz.html" class="active">Quiz</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container-2">
+      <section class="intro">
+        <h2>Quick Quiz</h2>
+        <p>Test your knowledge of computer parts with this short quiz.</p>
+
+        <div
+          id="quiz"
+          style="
+            text-align: left;
+            margin-top: 30px;
+            max-width: 600px;
+            width: 100%;
+          "
+        >
+          <form id="quiz-form">
+            <div class="question">
+              <p>
+                <strong
+                  >1. Which device is used to type text into a computer?</strong
+                >
+              </p>
+              <label><input type="radio" name="q1" value="a" /> Mouse</label
+              ><br />
+              <label><input type="radio" name="q1" value="b" /> Keyboard</label
+              ><br />
+              <label><input type="radio" name="q1" value="c" /> Monitor</label>
+            </div>
+            <br />
+            <div class="question">
+              <p><strong>2. Which of these is an output device?</strong></p>
+              <label><input type="radio" name="q2" value="a" /> Printer</label
+              ><br />
+              <label
+                ><input type="radio" name="q2" value="b" /> Microphone</label
+              ><br />
+              <label><input type="radio" name="q2" value="c" /> Scanner</label>
+            </div>
+            <br />
+            <div class="question">
+              <p><strong>3. What is the CPU often called?</strong></p>
+              <label
+                ><input type="radio" name="q3" value="a" /> The memory</label
+              ><br />
+              <label
+                ><input type="radio" name="q3" value="b" /> The brain of the
+                computer</label
+              ><br />
+              <label
+                ><input type="radio" name="q3" value="c" /> The speaker</label
+              >
+            </div>
+            <br />
+            <button type="submit" class="start-button">Submit Quiz</button>
+          </form>
+          <p id="quiz-result" style="margin-top: 20px; font-weight: bold"></p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 | ICT for Primary Students</p>
+    </footer>
+  </body>
+</html>
