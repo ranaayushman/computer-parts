@@ -4,14 +4,125 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz - Learn Computer Parts</title>
-    <link rel="stylesheet" href="../styles/style.css" />
-    <script defer src="../scripts/script.js"></script>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <style>
+      /* Quiz-specific styles */
+      .modal-overlay {
+        height: 65vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        text-align: left;
+        padding-left: 20px;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .modal-content {
+        background-color: white;
+        padding: 40px;
+        border-radius: 8px;
+        max-width: 600px;
+        width: 90%;
+      }
+
+      .modal-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      .modal-buttons button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      #exit-quiz {
+        background-color: #ff6b6b;
+        color: white;
+      }
+
+      #continue-quiz {
+        background-color: #38cfca;
+        color: white;
+      }
+
+      .question {
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        display: none;
+      }
+
+      .question.active {
+        display: block;
+      }
+
+      .timer-container {
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+
+      #timer {
+        margin-left: 5px;
+        font-size: 1.2em;
+      }
+
+      label {
+        display: block;
+        margin: 8px 0;
+        cursor: pointer;
+      }
+
+      #quiz-result {
+        font-size: 1.2em;
+        padding: 15px;
+        text-align: center;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        margin-top: 20px;
+        display: none;
+      }
+
+      /* Ensure quiz container aligns with site styling */
+      #quiz {
+        height: 63vh;
+        padding: 20px;
+        text-align: left;
+      }
+
+      /* Responsive adjustments for quiz */
+      @media screen and (max-width: 768px) {
+        .modal-content {
+          width: 95%;
+          padding: 15px;
+        }
+
+        .question {
+          padding: 10px;
+        }
+
+        #quiz {
+          padding: 10px;
+        }
+      }
+    </style>
   </head>
   <body>
     <header>
       <div class="nav">
         <h1>Learn Computer Parts</h1>
-        <nav>
+        <div class="menu-toggle">☰</div>
+        <nav class="nav-menu">
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="input-devices.html">Input Devices</a></li>
@@ -25,68 +136,80 @@
       </div>
     </header>
 
-    <main class="container-2">
+    <main class="container">
       <section class="intro">
         <h2>Quick Quiz</h2>
         <p>Test your knowledge of computer parts with this short quiz.</p>
 
-        <div
-          id="quiz"
-          style="
-            padding: 20px;
-            text-align: left;
-            margin-top: 30px;
-            max-width: 600px;
-            width: 100%;
-          "
-        >
+        <!-- Rules Modal -->
+        <div id="rules-modal" class="modal-overlay">
+          <div class="modal-content">
+            <h3>Quiz Rules</h3>
+            <ol>
+              <li>You have <strong>15 seconds</strong> per question.</li>
+              <li>Once you select an answer, it cannot be changed.</li>
+              <li>You cannot select an option after the timer runs out.</li>
+              <li>You cannot exit the quiz while playing.</li>
+              <li>Points are awarded for correct answers.</li>
+            </ol>
+            <div class="modal-buttons">
+              <button id="exit-quiz">Exit Quiz</button>
+              <button id="continue-quiz">Continue</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quiz Form -->
+        <div id="quiz">
           <form id="quiz-form">
+            <div class="timer-container">
+              Time left: <span id="timer">15</span> seconds
+            </div>
+
             <div class="question">
               <p>
                 <strong
                   >1. Which device is used to type text into a computer?</strong
                 >
               </p>
-              <label><input type="radio" name="q1" value="a" /> Mouse</label
-              ><br />
-              <label><input type="radio" name="q1" value="b" /> Keyboard</label
-              ><br />
+              <label><input type="radio" name="q1" value="a" /> Mouse</label>
+              <label><input type="radio" name="q1" value="b" /> Keyboard</label>
               <label><input type="radio" name="q1" value="c" /> Monitor</label>
             </div>
-            <br />
+
             <div class="question">
               <p><strong>2. Which of these is an output device?</strong></p>
-              <label><input type="radio" name="q2" value="a" /> Printer</label
-              ><br />
+              <label><input type="radio" name="q2" value="a" /> Printer</label>
               <label
                 ><input type="radio" name="q2" value="b" /> Microphone</label
-              ><br />
+              >
               <label><input type="radio" name="q2" value="c" /> Scanner</label>
             </div>
-            <br />
+
             <div class="question">
               <p><strong>3. What is the CPU often called?</strong></p>
               <label
                 ><input type="radio" name="q3" value="a" /> The memory</label
-              ><br />
+              >
               <label
                 ><input type="radio" name="q3" value="b" /> The brain of the
                 computer</label
-              ><br />
+              >
               <label
                 ><input type="radio" name="q3" value="c" /> The speaker</label
               >
             </div>
-            <br />
-            <button type="submit" class="start-button">Submit Quiz</button>
           </form>
-          <p id="quiz-result" style="margin-top: 20px; font-weight: bold"></p>
+
+          <p id="quiz-result"></p>
         </div>
       </section>
     </main>
 
     <footer>
-      <p>&copy; 2025 | ICT for Primary Students</p>
+      <p>© 2025 | ICT for Primary Students</p>
     </footer>
+
+    <script src="./scripts/script.js"></script>
   </body>
 </html>
